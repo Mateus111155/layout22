@@ -1,47 +1,128 @@
 ```javascript
-// ===============================
-// SISTEMA DE FINANÇAS
-// ===============================
+// ==========================================
+// MINHAS FINANÇAS
+// ==========================================
 
 
-// Lista onde vamos guardar as despesas
-let despesas = [];
+// ------------------------------------------
+// VARIÁVEIS
+// ------------------------------------------
 
 
 // Saldo inicial
 let saldo = 1000;
 
 
-// ===============================
-// ADICIONAR DESPESA
-// ===============================
+// Lista de entradas
+let entradas = [];
 
-function adicionarDespesa() {
 
-    // Pega a descrição digitada
+// Lista de despesas
+let despesas = [];
+
+
+// ==========================================
+// ADICIONAR ENTRADA
+// ==========================================
+
+function adicionarEntrada() {
+
+    // Pegar descrição
     let descricao =
-        document.getElementById("descricao").value;
+        document.getElementById("descricaoEntrada").value;
 
 
-    // Pega o valor digitado
+    // Pegar valor
     let valor =
         Number(
-            document.getElementById("valor").value
+            document.getElementById("valorEntrada").value
         );
 
 
-    // Verifica se os dados estão corretos
-    if (descricao === "" || valor <= 0) {
+    // Verificar dados
+    if (
+        descricao === "" ||
+        valor <= 0
+    ) {
 
         alert(
             "Digite uma descrição e um valor válido."
         );
 
         return;
+
     }
 
 
-    // Cria uma nova despesa
+    // Criar objeto
+    let novaEntrada = {
+
+        descricao: descricao,
+
+        valor: valor
+
+    };
+
+
+    // Adicionar na lista
+    entradas.push(novaEntrada);
+
+
+    // Adicionar ao saldo
+    saldo = saldo + valor;
+
+
+    // Atualizar página
+    atualizar();
+
+
+    // Limpar campos
+    document.getElementById(
+        "descricaoEntrada"
+    ).value = "";
+
+
+    document.getElementById(
+        "valorEntrada"
+    ).value = "";
+
+}
+
+
+// ==========================================
+// ADICIONAR DESPESA
+// ==========================================
+
+function adicionarDespesa() {
+
+    // Pegar descrição
+    let descricao =
+        document.getElementById("descricaoDespesa").value;
+
+
+    // Pegar valor
+    let valor =
+        Number(
+            document.getElementById("valorDespesa").value
+        );
+
+
+    // Verificar dados
+    if (
+        descricao === "" ||
+        valor <= 0
+    ) {
+
+        alert(
+            "Digite uma descrição e um valor válido."
+        );
+
+        return;
+
+    }
+
+
+    // Criar objeto
     let novaDespesa = {
 
         descricao: descricao,
@@ -51,101 +132,246 @@ function adicionarDespesa() {
     };
 
 
-    // Coloca a despesa na lista
+    // Adicionar na lista
     despesas.push(novaDespesa);
 
 
-    // Retira o valor do saldo
+    // Tirar do saldo
     saldo = saldo - valor;
 
 
-    // Atualiza a tela
+    // Atualizar página
     atualizar();
 
 
-    // Limpa os campos
-    document.getElementById("descricao").value = "";
+    // Limpar campos
+    document.getElementById(
+        "descricaoDespesa"
+    ).value = "";
 
-    document.getElementById("valor").value = "";
+
+    document.getElementById(
+        "valorDespesa"
+    ).value = "";
 
 }
 
 
-// ===============================
+// ==========================================
+// EXCLUIR ENTRADA
+// ==========================================
+
+function excluirEntrada(indice) {
+
+    // Pegar entrada
+    let entrada =
+        entradas[indice];
+
+
+    // Retirar do saldo
+    saldo = saldo - entrada.valor;
+
+
+    // Remover da lista
+    entradas.splice(
+        indice,
+        1
+    );
+
+
+    // Atualizar
+    atualizar();
+
+}
+
+
+// ==========================================
 // EXCLUIR DESPESA
-// ===============================
+// ==========================================
 
 function excluirDespesa(indice) {
 
-    // Pega a despesa que será excluída
-    let despesa = despesas[indice];
+    // Pegar despesa
+    let despesa =
+        despesas[indice];
 
 
-    // Devolve o dinheiro para o saldo
+    // Devolver dinheiro ao saldo
     saldo = saldo + despesa.valor;
 
 
-    // Remove a despesa da lista
-    despesas.splice(indice, 1);
+    // Remover da lista
+    despesas.splice(
+        indice,
+        1
+    );
 
 
-    // Atualiza a tela
+    // Atualizar
     atualizar();
 
 }
 
 
-// ===============================
-// ATUALIZAR A TELA
-// ===============================
+// ==========================================
+// ATUALIZAR PÁGINA
+// ==========================================
 
 function atualizar() {
 
-    // Atualiza o saldo
-    document.getElementById("saldo").textContent =
+
+    // --------------------------------------
+    // SALDO
+    // --------------------------------------
+
+    document.getElementById(
+        "saldo"
+    ).textContent =
         saldo.toFixed(2);
 
 
-    // Pega a lista do HTML
-    let lista =
-        document.getElementById("lista");
+    // --------------------------------------
+    // LISTA DE ENTRADAS
+    // --------------------------------------
+
+    let listaEntradas =
+        document.getElementById(
+            "listaEntradas"
+        );
 
 
-    // Limpa a lista
-    lista.innerHTML = "";
+    listaEntradas.innerHTML = "";
 
 
-    // Passa por todas as despesas
-    despesas.forEach(
-        function(despesa, indice) {
+    entradas.forEach(
+        function(entrada, indice) {
 
 
-            // Cria um elemento <li>
             let item =
-                document.createElement("li");
+                document.createElement(
+                    "li"
+                );
 
 
-            // Coloca as informações no item
             item.innerHTML = `
 
-                ${despesa.descricao}
+                ${entrada.descricao}
+
                 -
-                R$ ${despesa.valor.toFixed(2)}
+
+                R$ ${entrada.valor.toFixed(2)}
 
                 <button
-                    onclick="excluirDespesa(${indice})"
+                    onclick="excluirEntrada(${indice})"
                 >
-                    ❌ Excluir
+                    ❌
                 </button>
 
             `;
 
 
-            // Coloca o item na lista
-            lista.appendChild(item);
+            listaEntradas.appendChild(
+                item
+            );
 
         }
     );
+
+
+    // --------------------------------------
+    // LISTA DE DESPESAS
+    // --------------------------------------
+
+    let listaDespesas =
+        document.getElementById(
+            "listaDespesas"
+        );
+
+
+    listaDespesas.innerHTML = "";
+
+
+    despesas.forEach(
+        function(despesa, indice) {
+
+
+            let item =
+                document.createElement(
+                    "li"
+                );
+
+
+            item.innerHTML = `
+
+                ${despesa.descricao}
+
+                -
+
+                R$ ${despesa.valor.toFixed(2)}
+
+                <button
+                    onclick="excluirDespesa(${indice})"
+                >
+                    ❌
+                </button>
+
+            `;
+
+
+            listaDespesas.appendChild(
+                item
+            );
+
+        }
+    );
+
+
+    // --------------------------------------
+    // TOTAL DE ENTRADAS
+    // --------------------------------------
+
+    let totalEntradas = 0;
+
+
+    entradas.forEach(
+        function(entrada) {
+
+            totalEntradas =
+                totalEntradas +
+                entrada.valor;
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalEntradas"
+    ).textContent =
+        totalEntradas.toFixed(2);
+
+
+    // --------------------------------------
+    // TOTAL DE DESPESAS
+    // --------------------------------------
+
+    let totalDespesas = 0;
+
+
+    despesas.forEach(
+        function(despesa) {
+
+            totalDespesas =
+                totalDespesas +
+                despesa.valor;
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalDespesas"
+    ).textContent =
+        totalDespesas.toFixed(2);
 
 }
 ```
