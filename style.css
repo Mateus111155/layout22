@@ -1,1 +1,19 @@
+/* Computador */
+.produtos {
+    display: flex;
+    gap: 20px;
+}
 
+/* Celular */
+@media (max-width: 600px) {
+
+    .produtos {
+        display: block;
+    }
+
+    .produto {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+}
