@@ -1,3 +1,4 @@
+document.getElementById("valor").value
 let saldo = 1000;
 let entrada = 2000;
 let despesa = 700;
