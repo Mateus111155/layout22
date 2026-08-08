@@ -17,7 +17,6 @@
 
     <h1>💰 Minhas Finanças</h1>
 
-
     <h2>
         Saldo:
         R$ <span id="saldo">1000</span>
@@ -30,12 +29,6 @@
     <h2>➕ Adicionar despesa</h2>
 
 
-    <label>
-        Descrição:
-    </label>
-
-    <br>
-
     <input
         type="text"
         id="descricao"
@@ -45,12 +38,6 @@
 
     <br><br>
 
-
-    <label>
-        Valor:
-    </label>
-
-    <br>
 
     <input
         type="number"
@@ -67,37 +54,31 @@
     </button>
 
 
-    <h2>
-        Despesas:
-        R$ <span id="despesas">0</span>
-    </h2>
+    <h2>📋 Minhas despesas</h2>
 
 
-    <div id="mensagem"></div>
+    <ul id="lista"></ul>
 
 
     <script>
 
+        // Array que guarda as despesas
+        let despesas = [];
 
-        // Nosso saldo inicial
+
+        // Saldo inicial
         let saldo = 1000;
-
-
-        // Total das despesas
-        let despesas = 0;
 
 
         function adicionarDespesa() {
 
 
-            // Pegando a descrição
             let descricao =
                 document.getElementById(
                     "descricao"
                 ).value;
 
 
-            // Pegando o valor
             let valor =
                 Number(
                     document.getElementById(
@@ -106,14 +87,13 @@
                 );
 
 
-            // Verificando se o valor é válido
             if (
                 descricao === "" ||
                 valor <= 0
             ) {
 
                 alert(
-                    "Digite uma descrição e um valor válido."
+                    "Digite uma descrição e um valor."
                 );
 
                 return;
@@ -121,12 +101,23 @@
             }
 
 
-            // Adicionando a despesa
-            despesas =
-                despesas + valor;
+            // Criando um objeto
+            let novaDespesa = {
+
+                descricao: descricao,
+
+                valor: valor
+
+            };
 
 
-            // Tirando a despesa do saldo
+            // Colocando no array
+            despesas.push(
+                novaDespesa
+            );
+
+
+            // Diminuindo do saldo
             saldo =
                 saldo - valor;
 
@@ -138,22 +129,60 @@
                 saldo.toFixed(2);
 
 
-            // Atualizando despesas
-            document.getElementById(
-                "despesas"
-            ).textContent =
-                despesas.toFixed(2);
+            // Mostrando a lista
+            mostrarDespesas();
 
 
-            // Mostrando mensagem
+            // Limpando os campos
             document.getElementById(
-                "mensagem"
-            ).textContent =
-                "Despesa adicionada: " +
-                descricao;
+                "descricao"
+            ).value = "";
+
+
+            document.getElementById(
+                "valor"
+            ).value = "";
 
         }
 
+
+        function mostrarDespesas() {
+
+
+            let lista =
+                document.getElementById(
+                    "lista"
+                );
+
+
+            // Limpa a lista antes de mostrar
+            lista.innerHTML = "";
+
+
+            despesas.forEach(
+                function(despesa) {
+
+
+                    let item =
+                        document.createElement(
+                            "li"
+                        );
+
+
+                    item.textContent =
+                        despesa.descricao +
+                        " - R$ " +
+                        despesa.valor.toFixed(2);
+
+
+                    lista.appendChild(
+                        item
+                    );
+
+                }
+            );
+
+        }
 
     </script>
 
