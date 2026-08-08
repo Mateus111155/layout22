@@ -6,185 +6,142 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Minhas Finanças</title>
 
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-    <h1>💰 Minhas Finanças</h1>
 
-    <h2>
-        Saldo:
-        R$ <span id="saldo">1000</span>
-    </h2>
+    <!-- CABEÇALHO -->
 
+    <header>
 
-    <hr>
+        <h1>💰 Minhas Finanças</h1>
 
+        <p>
+            Controle seu dinheiro
+        </p>
 
-    <h2>➕ Adicionar despesa</h2>
+    </header>
 
 
-    <input
-        type="text"
-        id="descricao"
-        placeholder="Ex: Mercado"
-    >
+    <main>
 
 
-    <br><br>
+        <!-- RESUMO -->
 
+        <section class="resumo">
 
-    <input
-        type="number"
-        id="valor"
-        placeholder="Ex: 150"
-    >
 
+            <div class="card">
 
-    <br><br>
+                <h2>💰 Saldo</h2>
 
+                <p id="saldo">
+                    1000.00
+                </p>
 
-    <button onclick="adicionarDespesa()">
-        Adicionar despesa
-    </button>
+            </div>
 
 
-    <h2>📋 Minhas despesas</h2>
+            <div class="card">
 
+                <h2>📈 Entradas</h2>
 
-    <ul id="lista"></ul>
+                <p id="entradas">
+                    0.00
+                </p>
 
+            </div>
 
-    <script>
 
-        // Array que guarda as despesas
-        let despesas = [];
+            <div class="card">
 
+                <h2>📉 Despesas</h2>
 
-        // Saldo inicial
-        let saldo = 1000;
+                <p id="despesas">
+                    0.00
+                </p>
 
+            </div>
 
-        function adicionarDespesa() {
 
+        </section>
 
-            let descricao =
-                document.getElementById(
-                    "descricao"
-                ).value;
 
+        <!-- ADICIONAR DESPESA -->
 
-            let valor =
-                Number(
-                    document.getElementById(
-                        "valor"
-                    ).value
-                );
+        <section class="caixa">
 
+            <h2>➕ Adicionar despesa</h2>
 
-            if (
-                descricao === "" ||
-                valor <= 0
-            ) {
 
-                alert(
-                    "Digite uma descrição e um valor."
-                );
+            <label for="descricao">
+                Descrição
+            </label>
 
-                return;
 
-            }
+            <input
+                type="text"
+                id="descricao"
+                placeholder="Ex: Mercado"
+            >
 
 
-            // Criando um objeto
-            let novaDespesa = {
+            <label for="valor">
+                Valor
+            </label>
 
-                descricao: descricao,
 
-                valor: valor
+            <input
+                type="number"
+                id="valor"
+                placeholder="Ex: 150"
+                step="0.01"
+            >
 
-            };
 
+            <button
+                onclick="adicionarDespesa()"
+            >
+                Adicionar despesa
+            </button>
 
-            // Colocando no array
-            despesas.push(
-                novaDespesa
-            );
 
+        </section>
 
-            // Diminuindo do saldo
-            saldo =
-                saldo - valor;
 
+        <!-- LISTA DE DESPESAS -->
 
-            // Atualizando o saldo
-            document.getElementById(
-                "saldo"
-            ).textContent =
-                saldo.toFixed(2);
+        <section class="caixa">
 
+            <h2>📋 Minhas despesas</h2>
 
-            // Mostrando a lista
-            mostrarDespesas();
 
+            <ul id="lista">
 
-            // Limpando os campos
-            document.getElementById(
-                "descricao"
-            ).value = "";
+            </ul>
 
 
-            document.getElementById(
-                "valor"
-            ).value = "";
+        </section>
 
-        }
 
+    </main>
 
-        function mostrarDespesas() {
 
+    <!-- JAVASCRIPT -->
 
-            let lista =
-                document.getElementById(
-                    "lista"
-                );
+    <script src="script.js"></script>
 
-
-            // Limpa a lista antes de mostrar
-            lista.innerHTML = "";
-
-
-            despesas.forEach(
-                function(despesa) {
-
-
-                    let item =
-                        document.createElement(
-                            "li"
-                        );
-
-
-                    item.textContent =
-                        despesa.descricao +
-                        " - R$ " +
-                        despesa.valor.toFixed(2);
-
-
-                    lista.appendChild(
-                        item
-                    );
-
-                }
-            );
-
-        }
-
-    </script>
 
 </body>
 
