@@ -1,10 +1,62 @@
-/* Computador */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+}
+
+header {
+    background: #222;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.carrinho {
+    margin-top: 10px;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
 .produtos {
     display: flex;
+    justify-content: center;
     gap: 20px;
 }
 
-/* Celular */
+.produto {
+    background: white;
+    width: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #ccc;
+}
+
+.produto button {
+    border: none;
+    padding: 10px 20px;
+    background: #222;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.produto button:hover {
+    background: #444;
+}
+
+.total {
+    margin-top: 30px;
+}
+
+/* 📱 CELULAR */
+
 @media (max-width: 600px) {
 
     .produtos {
@@ -14,6 +66,10 @@
     .produto {
         width: 90%;
         margin: 20px auto;
+    }
+
+    h1 {
+        font-size: 25px;
     }
 
 }
