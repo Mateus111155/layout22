@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Faz o site se adaptar ao celular -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minha Loja</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🛍️ Minha Loja</h1>
+
+        <div class="carrinho">
+            🛒 Carrinho: <span id="quantidade">0</span>
+        </div>
+    </header>
+
+    <main>
+
+        <h2>Produtos</h2>
+
+        <section class="produtos">
+
+            <div class="produto">
+                <h3>Camiseta</h3>
+                <p>R$ 50,00</p>
+
+                <button onclick="adicionarCarrinho(50)">
+                    Adicionar
+                </button>
+            </div>
+
+            <div class="produto">
+                <h3>Calça</h3>
+                <p>R$ 100,00</p>
+
+                <button onclick="adicionarCarrinho(100)">
+                    Adicionar
+                </button>
+            </div>
+
+            <div class="produto">
+                <h3>Tênis</h3>
+                <p>R$ 200,00</p>
+
+                <button onclick="adicionarCarrinho(200)">
+                    Adicionar
+                </button>
+            </div>
+
+        </section>
+
+        <div class="total">
+            <h2>Total: R$ <span id="total">0</span>,00</h2>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
