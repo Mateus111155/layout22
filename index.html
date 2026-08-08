@@ -8,104 +8,535 @@
 
     <title>Minha Loja</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #222;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .carrinho-topo {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .produtos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .produto {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .produto h3 {
+            margin-top: 0;
+        }
+
+        .preco {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        button {
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            background: #222;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #444;
+        }
+
+        .carrinho {
+            background: white;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .quantidade button {
+            padding: 5px 10px;
+            margin: 0 5px;
+        }
+
+        .checkout {
+            background: white;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .finalizar {
+            width: 100%;
+            margin-top: 10px;
+            background: #16833b;
+            font-size: 18px;
+        }
+
+        .finalizar:hover {
+            background: #11652e;
+        }
+
+        /* CELULAR */
+
+        @media (max-width: 700px) {
+
+            .produtos {
+                grid-template-columns: 1fr;
+            }
+
+            .item {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            main {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <!-- CABEÇALHO -->
-    <header>
 
-        <h1>🛍️ Minha Loja</h1>
+<header>
 
-        <div class="carrinho">
-            🛒 Carrinho:
-            <span id="quantidade">0</span>
+    <h1>🛍️ Minha Loja</h1>
+
+    <div class="carrinho-topo">
+        🛒 Carrinho:
+        <span id="quantidade">0</span>
+    </div>
+
+</header>
+
+
+<main>
+
+
+    <!-- PRODUTOS -->
+
+    <h2>🛍️ Produtos</h2>
+
+    <section class="produtos">
+
+
+        <div class="produto">
+
+            <h3>Camiseta</h3>
+
+            <p>Uma camiseta confortável.</p>
+
+            <p class="preco">
+                R$ 50,00
+            </p>
+
+            <button onclick="adicionar('Camiseta', 50)">
+                Adicionar
+            </button>
+
         </div>
 
-    </header>
+
+        <div class="produto">
+
+            <h3>Calça</h3>
+
+            <p>Calça confortável para o dia a dia.</p>
+
+            <p class="preco">
+                R$ 100,00
+            </p>
+
+            <button onclick="adicionar('Calça', 100)">
+                Adicionar
+            </button>
+
+        </div>
 
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main>
+        <div class="produto">
 
-        <h2>Produtos</h2>
+            <h3>Tênis</h3>
 
+            <p>Tênis confortável.</p>
 
-        <!-- PRODUTOS -->
-        <section class="produtos">
+            <p class="preco">
+                R$ 200,00
+            </p>
 
-            <!-- PRODUTO 1 -->
-            <div class="produto">
+            <button onclick="adicionar('Tênis', 200)">
+                Adicionar
+            </button>
 
-                <h3>Camiseta</h3>
-
-                <p>Uma camiseta confortável e bonita.</p>
-
-                <strong>R$ 50,00</strong>
-
-                <br><br>
-
-                <button onclick="adicionarCarrinho('Camiseta', 50)">
-                    Adicionar ao carrinho
-                </button>
-
-            </div>
+        </div>
 
 
-            <!-- PRODUTO 2 -->
-            <div class="produto">
-
-                <h3>Calça</h3>
-
-                <p>Calça confortável para o dia a dia.</p>
-
-                <strong>R$ 100,00</strong>
-
-                <br><br>
-
-                <button onclick="adicionarCarrinho('Calça', 100)">
-                    Adicionar ao carrinho
-                </button>
-
-            </div>
+    </section>
 
 
-            <!-- PRODUTO 3 -->
-            <div class="produto">
+    <!-- CARRINHO -->
 
-                <h3>Tênis</h3>
+    <section class="carrinho">
 
-                <p>Tênis confortável para diversas ocasiões.</p>
+        <h2>🛒 Meu Carrinho</h2>
 
-                <strong>R$ 200,00</strong>
+        <div id="lista">
 
-                <br><br>
+            <p>Nenhum produto adicionado.</p>
 
-                <button onclick="adicionarCarrinho('Tênis', 200)">
-                    Adicionar ao carrinho
-                </button>
+        </div>
 
-            </div>
+        <h2>
+            Total: R$
+            <span id="total">0,00</span>
+        </h2>
 
-        </section>
-
-
-        <!-- TOTAL -->
-        <section class="total">
-
-            <h2>
-                Total: R$
-                <span id="total">0.00</span>
-            </h2>
-
-        </section>
-
-    </main>
+    </section>
 
 
-    <!-- JAVASCRIPT -->
-    <script src="script.js"></script>
+    <!-- COMPRA -->
+
+    <section class="checkout">
+
+        <h2>📦 Finalizar Compra</h2>
+
+        <input
+            type="text"
+            id="nome"
+            placeholder="Seu nome"
+        >
+
+        <input
+            type="tel"
+            id="telefone"
+            placeholder="Seu telefone"
+        >
+
+        <textarea
+            id="endereco"
+            placeholder="Seu endereço"
+        ></textarea>
+
+        <button
+            class="finalizar"
+            onclick="finalizarCompra()"
+        >
+            Finalizar Compra
+        </button>
+
+    </section>
+
+
+</main>
+
+
+<script>
+
+    let carrinho = [];
+
+
+    function adicionar(nome, preco) {
+
+        let produto = carrinho.find(
+            item => item.nome === nome
+        );
+
+
+        if (produto) {
+
+            produto.quantidade++;
+
+        } else {
+
+            carrinho.push({
+
+                nome: nome,
+
+                preco: preco,
+
+                quantidade: 1
+
+            });
+
+        }
+
+
+        atualizar();
+
+    }
+
+
+    function diminuir(nome) {
+
+        let produto = carrinho.find(
+            item => item.nome === nome
+        );
+
+
+        if (produto) {
+
+            produto.quantidade--;
+
+            if (produto.quantidade <= 0) {
+
+                carrinho = carrinho.filter(
+                    item => item.nome !== nome
+                );
+
+            }
+
+        }
+
+
+        atualizar();
+
+    }
+
+
+    function remover(nome) {
+
+        carrinho = carrinho.filter(
+            item => item.nome !== nome
+        );
+
+        atualizar();
+
+    }
+
+
+    function atualizar() {
+
+        let lista = document.getElementById("lista");
+
+        let quantidade = 0;
+
+        let total = 0;
+
+
+        lista.innerHTML = "";
+
+
+        if (carrinho.length === 0) {
+
+            lista.innerHTML =
+                "<p>Nenhum produto adicionado.</p>";
+
+        }
+
+
+        carrinho.forEach(produto => {
+
+            quantidade += produto.quantidade;
+
+            total +=
+                produto.preco *
+                produto.quantidade;
+
+
+            let item =
+                document.createElement("div");
+
+
+            item.className = "item";
+
+
+            item.innerHTML = `
+
+                <div>
+
+                    <strong>
+                        ${produto.nome}
+                    </strong>
+
+                    <br>
+
+                    R$ ${produto.preco.toFixed(2)}
+
+                </div>
+
+
+                <div class="quantidade">
+
+                    <button
+                        onclick="diminuir('${produto.nome}')"
+                    >
+                        −
+                    </button>
+
+
+                    ${produto.quantidade}
+
+
+                    <button
+                        onclick="adicionar(
+                            '${produto.nome}',
+                            ${produto.preco}
+                        )"
+                    >
+                        +
+                    </button>
+
+
+                    <button
+                        onclick="remover('${produto.nome}')"
+                    >
+                        ❌
+                    </button>
+
+                </div>
+
+            `;
+
+
+            lista.appendChild(item);
+
+        });
+
+
+        document.getElementById(
+            "quantidade"
+        ).textContent = quantidade;
+
+
+        document.getElementById(
+            "total"
+        ).textContent =
+            total.toFixed(2).replace(".", ",");
+
+    }
+
+
+    function finalizarCompra() {
+
+        if (carrinho.length === 0) {
+
+            alert(
+                "Adicione algum produto ao carrinho."
+            );
+
+            return;
+
+        }
+
+
+        let nome =
+            document.getElementById(
+                "nome"
+            ).value;
+
+
+        let telefone =
+            document.getElementById(
+                "telefone"
+            ).value;
+
+
+        let endereco =
+            document.getElementById(
+                "endereco"
+            ).value;
+
+
+        if (
+            nome === "" ||
+            telefone === "" ||
+            endereco === ""
+        ) {
+
+            alert(
+                "Preencha todos os dados."
+            );
+
+            return;
+
+        }
+
+
+        alert(
+            "Pedido realizado com sucesso! 🎉\n\n" +
+
+            "Cliente: " + nome + "\n" +
+
+            "Telefone: " + telefone + "\n\n" +
+
+            "Obrigado pela compra!"
+        );
+
+    }
+
+</script>
+
 
 </body>
 
