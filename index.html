@@ -13,7 +13,13 @@
 
     <title>Minhas Finanças</title>
 
-    <link rel="stylesheet" href="style.css">
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
 </head>
 
@@ -21,11 +27,15 @@
 <body>
 
 
-    <!-- CABEÇALHO -->
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
 
     <header>
 
-        <h1>💰 Minhas Finanças</h1>
+        <h1>
+            💰 Minhas Finanças
+        </h1>
 
         <p>
             Controle seu dinheiro
@@ -34,77 +44,113 @@
     </header>
 
 
+
     <main>
 
 
-        <!-- RESUMO -->
+        <!-- =========================
+             SALDO
+        ========================== -->
 
-        <section class="resumo">
+        <section class="saldo">
 
+            <h2>
+                💰 Saldo atual
+            </h2>
 
-            <div class="card">
+            <p>
 
-                <h2>💰 Saldo</h2>
+                R$
 
-                <p id="saldo">
+                <span id="saldo">
                     1000.00
-                </p>
+                </span>
 
-            </div>
-
-
-            <div class="card">
-
-                <h2>📈 Entradas</h2>
-
-                <p id="entradas">
-                    0.00
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h2>📉 Despesas</h2>
-
-                <p id="despesas">
-                    0.00
-                </p>
-
-            </div>
-
+            </p>
 
         </section>
 
 
-        <!-- ADICIONAR DESPESA -->
 
-        <section class="caixa">
+        <!-- =========================
+             ENTRADAS
+        ========================== -->
 
-            <h2>➕ Adicionar despesa</h2>
+        <section class="caixa entrada">
+
+            <h2>
+                📈 Adicionar entrada
+            </h2>
 
 
-            <label for="descricao">
+            <label>
                 Descrição
             </label>
 
 
             <input
                 type="text"
-                id="descricao"
-                placeholder="Ex: Mercado"
+                id="descricaoEntrada"
+                placeholder="Ex: Salário"
             >
 
 
-            <label for="valor">
+            <label>
                 Valor
             </label>
 
 
             <input
                 type="number"
-                id="valor"
+                id="valorEntrada"
+                placeholder="Ex: 2000"
+                step="0.01"
+            >
+
+
+            <button
+                onclick="adicionarEntrada()"
+            >
+
+                ➕ Adicionar entrada
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =========================
+             DESPESAS
+        ========================== -->
+
+        <section class="caixa despesa">
+
+            <h2>
+                📉 Adicionar despesa
+            </h2>
+
+
+            <label>
+                Descrição
+            </label>
+
+
+            <input
+                type="text"
+                id="descricaoDespesa"
+                placeholder="Ex: Mercado"
+            >
+
+
+            <label>
+                Valor
+            </label>
+
+
+            <input
+                type="number"
+                id="valorDespesa"
                 placeholder="Ex: 150"
                 step="0.01"
             >
@@ -113,24 +159,98 @@
             <button
                 onclick="adicionarDespesa()"
             >
-                Adicionar despesa
+
+                ➖ Adicionar despesa
+
             </button>
+
+        </section>
+
+
+
+        <!-- =========================
+             RESUMO
+        ========================== -->
+
+        <section class="resumo">
+
+
+            <div>
+
+                <h3>
+                    📈 Total de entradas
+                </h3>
+
+                <p>
+
+                    R$
+
+                    <span id="totalEntradas">
+                        0.00
+                    </span>
+
+                </p>
+
+            </div>
+
+
+
+            <div>
+
+                <h3>
+                    📉 Total de despesas
+                </h3>
+
+                <p>
+
+                    R$
+
+                    <span id="totalDespesas">
+                        0.00
+                    </span>
+
+                </p>
+
+            </div>
 
 
         </section>
 
 
-        <!-- LISTA DE DESPESAS -->
 
-        <section class="caixa">
+        <!-- =========================
+             LISTA DE ENTRADAS
+        ========================== -->
 
-            <h2>📋 Minhas despesas</h2>
+        <section class="lista">
+
+            <h2>
+                📈 Minhas entradas
+            </h2>
 
 
-            <ul id="lista">
+            <ul id="listaEntradas">
 
             </ul>
 
+        </section>
+
+
+
+        <!-- =========================
+             LISTA DE DESPESAS
+        ========================== -->
+
+        <section class="lista">
+
+            <h2>
+                📉 Minhas despesas
+            </h2>
+
+
+            <ul id="listaDespesas">
+
+            </ul>
 
         </section>
 
@@ -138,9 +258,14 @@
     </main>
 
 
-    <!-- JAVASCRIPT -->
 
-    <script src="script.js"></script>
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script
+        src="script.js"
+    ></script>
 
 
 </body>
