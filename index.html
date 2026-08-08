@@ -1,32 +1,163 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Minhas Finanças</title>
+
 </head>
 
 <body>
 
     <h1>💰 Minhas Finanças</h1>
 
-    <p id="mensagem">Olá!</p>
 
-    <button onclick="mostrarMensagem()">
-        Clique aqui
+    <h2>
+        Saldo:
+        R$ <span id="saldo">1000</span>
+    </h2>
+
+
+    <hr>
+
+
+    <h2>➕ Adicionar despesa</h2>
+
+
+    <label>
+        Descrição:
+    </label>
+
+    <br>
+
+    <input
+        type="text"
+        id="descricao"
+        placeholder="Ex: Mercado"
+    >
+
+
+    <br><br>
+
+
+    <label>
+        Valor:
+    </label>
+
+    <br>
+
+    <input
+        type="number"
+        id="valor"
+        placeholder="Ex: 150"
+    >
+
+
+    <br><br>
+
+
+    <button onclick="adicionarDespesa()">
+        Adicionar despesa
     </button>
+
+
+    <h2>
+        Despesas:
+        R$ <span id="despesas">0</span>
+    </h2>
+
+
+    <div id="mensagem"></div>
+
 
     <script>
 
-        function mostrarMensagem() {
 
-            document.getElementById("mensagem").textContent =
-                "Meu primeiro JavaScript está funcionando! 🎉";
+        // Nosso saldo inicial
+        let saldo = 1000;
+
+
+        // Total das despesas
+        let despesas = 0;
+
+
+        function adicionarDespesa() {
+
+
+            // Pegando a descrição
+            let descricao =
+                document.getElementById(
+                    "descricao"
+                ).value;
+
+
+            // Pegando o valor
+            let valor =
+                Number(
+                    document.getElementById(
+                        "valor"
+                    ).value
+                );
+
+
+            // Verificando se o valor é válido
+            if (
+                descricao === "" ||
+                valor <= 0
+            ) {
+
+                alert(
+                    "Digite uma descrição e um valor válido."
+                );
+
+                return;
+
+            }
+
+
+            // Adicionando a despesa
+            despesas =
+                despesas + valor;
+
+
+            // Tirando a despesa do saldo
+            saldo =
+                saldo - valor;
+
+
+            // Atualizando o saldo
+            document.getElementById(
+                "saldo"
+            ).textContent =
+                saldo.toFixed(2);
+
+
+            // Atualizando despesas
+            document.getElementById(
+                "despesas"
+            ).textContent =
+                despesas.toFixed(2);
+
+
+            // Mostrando mensagem
+            document.getElementById(
+                "mensagem"
+            ).textContent =
+                "Despesa adicionada: " +
+                descricao;
 
         }
+
 
     </script>
 
 </body>
 
 </html>
+```
